@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Check if taskText is not empty
       if (taskText === "") {
           alert("Please enter a task.");
-          return;
+          return; // Exit function if no task is entered
       }
       
       // Create a new <li> element for the task
@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
       removeButton.className = 'remove-btn'; // Add a class for potential styling
       
       // Add an event listener to the remove button
-      removeButton.onclick = function() {
+      removeButton.addEventListener('click', function() {
           taskList.removeChild(taskItem); // Remove the task when the button is clicked
-      };
+      });
       
       // Append the remove button to the task item <li>
       taskItem.appendChild(removeButton);
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
       taskList.appendChild(taskItem);
       
       // Clear the task input field after the task has been added
-      taskInput.value = '';
+      taskInput.value = ''; // Reset the input field
   }
 
   // Add event listener to the "Add Task" button to trigger addTask when clicked
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   taskInput.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') { // Check if the "Enter" key is pressed
           addTask(); // Call the addTask function
+          event.preventDefault(); // Prevent form submission or other side effects
       }
   });
 });
